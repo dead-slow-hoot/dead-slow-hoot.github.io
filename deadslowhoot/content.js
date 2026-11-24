@@ -66,11 +66,11 @@ window.SITE = {
     { group: "Listen", label: "Spotify",     icon: "music",  url: "https://open.spotify.com/artist/39OHhg4B0aJg3JxlYjtfJ3" },
     { group: "Listen", label: "Bandcamp",    icon: "music",  url: "https://deadslowhoot.bandcamp.com" },
     { group: "Listen", label: "Apple Music", icon: "music",  url: "" },
-    { group: "Listen", label: "YouTube",     icon: "video",  url: "" },
-    { group: "Listen", label: "SoundCloud",  icon: "music",  url: "" },
+    { group: "Listen", label: "YouTube",     icon: "video",  url: "https://www.youtube.com/watch?v=N90O2ZkhYl0" },
+    { group: "Listen", label: "SoundCloud",  icon: "music",  url: "https://soundcloud.com/dead-slow-hoot" },
 
     { group: "Follow", label: "Instagram",   icon: "camera", url: "https://www.instagram.com/deadslowhoot/" },
-    { group: "Follow", label: "TikTok",      icon: "video",  url: "" },
+    { group: "Follow", label: "TikTok",      icon: "video",  url: "https://www.tiktok.com/@deadslowhoot" },
     { group: "Follow", label: "Facebook",    icon: "web",    url: "" },
     { group: "Follow", label: "Bluesky",     icon: "web",    url: "" },
 
