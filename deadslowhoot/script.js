@@ -157,7 +157,7 @@
     });
     song.addEventListener("pause", function () {
       songBtn.replaceChild(icon("speaker"), songBtn.firstChild);
-      songLabel.textContent = "Play our new single";
+      songLabel.textContent = "Radio";
     });
     window.addEventListener("dsh-audio", function (e) { if (e.detail !== song) song.pause(); });
     actions.appendChild(songBtn);
