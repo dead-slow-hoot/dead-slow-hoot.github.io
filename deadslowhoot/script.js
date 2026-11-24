@@ -158,6 +158,17 @@
      address filled in (Substack sends them a confirmation email), and the
      button turns into a player for a random track from the demos folder. */
   var demoPool = (Array.isArray(window.DEMO_FILES) ? window.DEMO_FILES : []).filter(function (d) { return d && d.file; });
+  // Browsers can keep an old copy of the demo list for a while after you
+  // upload new demos, so fetch a fresh one in the background straight away.
+  var poolReady = fetch("data/demos.js?v=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.text() : ""; })
+    .then(function (t) {
+      var m = /DEMO_FILES\s*=\s*(\[[\s\S]*\])\s*;?\s*$/.exec(t);
+      if (!m) return;
+      var fresh = JSON.parse(m[1]).filter(function (d) { return d && d.file; });
+      if (fresh.length) demoPool = fresh;
+    })
+    .catch(function () { /* offline or opened from a file: keep the list we have */ });
   var JOINED_KEY = "dsh-joined";
   function joined() { try { return localStorage.getItem(JOINED_KEY) === "1"; } catch (e) { return false; } }
   function rememberJoined() { try { localStorage.setItem(JOINED_KEY, "1"); } catch (e) {} }
@@ -286,11 +297,17 @@
       play();
     }
     function showPlayer() {
-      build();
       form.hidden = true;
       btn.hidden = true;
       player.hidden = false;
-      if (current < 0) dip();
+      if (demoPool.length) { build(); if (current < 0) dip(); return; }
+      // list not here yet: wait for the fresh copy before saying there's nothing
+      if (!player.firstChild) player.appendChild(h("div", { class: "lucky-empty", text: "Loading demos…" }));
+      poolReady.then(function () {
+        player.textContent = "";
+        build();
+        if (demoPool.length && current < 0) dip();
+      });
     }
 
     box.appendChild(btn);
