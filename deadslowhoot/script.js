@@ -139,7 +139,30 @@
       actions.appendChild(h("a", assign({ class: "btn big", href: SITE.featured.url }, external(SITE.featured.url)),
         icon("music"), SITE.featured.label || "Listen"));
     }
-    actions.appendChild(h("button", { class: "btn big", type: "button", onclick: function () { openWindow("win-tour"); } },
+        // ---- Play-a-song button ----
+    var song = new Audio("music/All_My_Love_Remains.mp3.mp3");
+    var songLabel = h("span", { text: "Radio" });
+    var songBtn = h("button", { class: "btn big", type: "button" }, icon("speaker"), songLabel);
+    songBtn.addEventListener("click", function () {
+      if (song.paused) {
+        claimAudio(song);
+        song.play();
+      } else {
+        song.pause();
+      }
+    });
+    song.addEventListener("play", function () {
+      songBtn.replaceChild(icon("speakerOn"), songBtn.firstChild);
+      songLabel.textContent = "Pause";
+    });
+    song.addEventListener("pause", function () {
+      songBtn.replaceChild(icon("speaker"), songBtn.firstChild);
+      songLabel.textContent = "Play our new single";
+    });
+    window.addEventListener("dsh-audio", function (e) { if (e.detail !== song) song.pause(); });
+    actions.appendChild(songBtn);
+    // ---- end of play-a-song button ----
+     actions.appendChild(h("button", { class: "btn big", type: "button", onclick: function () { openWindow("win-tour"); } },
       icon("calendar"), "Tour dates"));
     actions.appendChild(h("button", { class: "btn big", type: "button", onclick: function () { openWindow("win-links"); } },
       icon("folder"), "All links"));
