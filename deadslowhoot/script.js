@@ -140,7 +140,7 @@
         icon("music"), SITE.featured.label || "Listen"));
     }
         // ---- Play-a-song button ----
-    var song = new Audio("music/All_My_Love_Remains.mp3.mp3");
+    var song = new Audio("music/All_My_Love_Remains.mp3");
     var songLabel = h("span", { text: "Radio" });
     var songBtn = h("button", { class: "btn big", type: "button" }, icon("speaker"), songLabel);
     songBtn.addEventListener("click", function () {
