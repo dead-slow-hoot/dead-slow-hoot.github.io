@@ -1,0 +1,79 @@
+# Publishes the site to GitHub Pages and refreshes the latest Substack post.
+# Runs: every time you change something on the main branch, every 6 hours,
+# and whenever you press "Run workflow" on the Actions tab.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "37 */6 * * *"   # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write   # to save the latest newsletter post into the repo
+  pages: write      # to publish the site
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check the site files are in the right place
+        run: |
+          if [ ! -f index.html ]; then
+            echo "::error::index.html isn't at the top level of the repository. Upload the CONTENTS of the deadslowhoot folder (index.html, style.css, scripts/, photos/ ...), not the folder itself."
+            echo "Top level of the repository contains:"; ls -la
+            exit 1
+          fi
+          for f in style.css script.js content.js themes.js; do
+            [ -f "$f" ] || echo "::warning::$f is missing - upload it from the download."
+          done
+          mkdir -p data demos
+          [ -f data/substack.js ] || echo "window.SUBSTACK_POST = null;" > data/substack.js
+          [ -f data/demos.js ] || echo "window.DEMO_FILES = [];" > data/demos.js
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: List the demos for the lucky dip
+        run: |
+          if [ -f scripts/list-demos.mjs ]; then node scripts/list-demos.mjs
+          else echo "::warning::scripts/list-demos.mjs is missing - upload the scripts folder. Skipping demo list."; fi
+
+      - name: Pull latest Substack post
+        run: |
+          if [ -f scripts/sync-substack.mjs ]; then node scripts/sync-substack.mjs
+          else echo "::warning::scripts/sync-substack.mjs is missing - upload the scripts folder. Skipping newsletter update."; fi
+
+      - name: Save demo list & newsletter post to the repo
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No photo changes."
+          else
+            git commit -m "Update demo list / latest newsletter post"
+            # saving is a nice-to-have: if it fails, still publish the site
+            (git pull --rebase && git push) || echo "::warning::Couldn't save the updated demo list/newsletter to the repo. The site is still published with them."
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
