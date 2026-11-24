@@ -25,14 +25,12 @@ env:
   SITE_DIR: deadslowhoot   # the folder that holds index.html
 
 jobs:
+  # 1) build: tidy up the files and package the site
   publish:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: deadslowhoot
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
 
@@ -83,5 +81,13 @@ jobs:
         with:
           path: deadslowhoot
 
+  # 2) deploy: put the packaged site live (GitHub's recommended separate job)
+  deploy:
+    needs: publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
