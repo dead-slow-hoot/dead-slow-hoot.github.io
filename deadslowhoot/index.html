@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dead Slow Hoot</title>
+  <meta name="description" content="Dead Slow Hoot — music, links and tour dates.">
+  <meta property="og:title" content="Dead Slow Hoot">
+  <meta property="og:description" content="Music, links and tour dates.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="themes.js"></script>
+</head>
+<body>
+  <div class="glitch-bg" aria-hidden="true"></div>
+  <main id="desktop" class="desktop">
+    <nav id="icons" class="desktop-icons" aria-label="Desktop"></nav>
+
+    <!-- Welcome -->
+    <section class="window" id="win-welcome" data-title="Dead Slow Hoot" data-icon="computer" aria-labelledby="t-welcome">
+      <header class="title-bar"><span class="title-text" id="t-welcome"></span></header>
+      <div class="window-body welcome-body"></div>
+    </section>
+
+    <!-- Links -->
+    <section class="window" id="win-links" data-title="Listen &amp; Follow" data-icon="folder" aria-labelledby="t-links">
+      <header class="title-bar"><span class="title-text" id="t-links"></span></header>
+      <div class="window-body links-body"></div>
+      <footer class="status-bar"><span class="status-field" id="links-status"></span></footer>
+    </section>
+
+    <!-- Tour dates -->
+    <section class="window" id="win-tour" data-title="Tour Dates" data-icon="calendar" aria-labelledby="t-tour">
+      <header class="title-bar"><span class="title-text" id="t-tour"></span></header>
+      <div class="window-body tour-body"></div>
+      <footer class="status-bar"><span class="status-field" id="tour-status"></span></footer>
+    </section>
+
+    <!-- Newsletter / latest Substack post -->
+    <section class="window" id="win-news" data-title="Newsletter" data-icon="mail" aria-labelledby="t-news">
+      <header class="title-bar"><span class="title-text" id="t-news"></span></header>
+      <div class="window-body news-body"></div>
+    </section>
+
+    <!-- Demos -->
+    <section class="window" id="win-demos" data-title="Demos" data-icon="speaker" aria-labelledby="t-demos">
+      <header class="title-bar"><span class="title-text" id="t-demos"></span></header>
+      <div class="window-body demos-body"></div>
+      <footer class="status-bar"><span class="status-field" id="demos-status"></span></footer>
+    </section>
+
+    <!-- Photos folder (opened from the desktop icon) -->
+    <section class="window" id="win-photos" data-title="Photos" data-icon="camera" data-start-closed="true" aria-labelledby="t-photos">
+      <header class="title-bar"><span class="title-text" id="t-photos"></span></header>
+      <div class="window-body photos-body"></div>
+      <footer class="status-bar"><span class="status-field" id="photos-status"></span></footer>
+    </section>
+
+    <!-- Display Properties: colour schemes -->
+    <section class="window" id="win-display" data-title="Display Properties" data-icon="display" data-width="400" data-start-closed="true" aria-labelledby="t-display">
+      <header class="title-bar"><span class="title-text" id="t-display"></span></header>
+      <div class="window-body display-body"></div>
+    </section>
+
+    <!-- Decorative photo windows are added here by script.js -->
+
+    <noscript>
+      <div class="window noscript"><div class="window-body">
+        This site needs JavaScript switched on to show links and tour dates.
+      </div></div>
+    </noscript>
+  </main>
+
+  <div id="start-menu" class="start-menu" hidden>
+    <div class="start-banner"><span>Dead Slow Hoot<b>95</b></span></div>
+    <ul class="start-items" role="menu"></ul>
+  </div>
+
+  <footer class="taskbar">
+    <button class="start-button" id="start-button" aria-haspopup="true" aria-expanded="false">
+      <span class="start-logo" aria-hidden="true"></span>Start
+    </button>
+    <div class="task-buttons" id="task-buttons"></div>
+    <div class="tray">
+      <button class="tray-btn" id="tray-display" type="button" title="Change colour scheme" aria-label="Change colour scheme"></button>
+      <span id="clock"></span>
+    </div>
+  </footer>
+
+  <div id="shutdown" class="shutdown" hidden>
+    <p>It's now safe to turn off<br>your computer.</p>
+    <small>(click anywhere to come back)</small>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="data/substack.js"></script>
+  <script src="data/demos.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
