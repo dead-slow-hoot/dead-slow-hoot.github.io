@@ -77,6 +77,14 @@
     dice: ["", ".kkkkkkkkkkkkkk", ".kwwwwwwwwwwwwk", ".kwkkwwwwwwkkwk", ".kwkkwwwwwwkkwk", ".kwwwwwwwwwwwwk",
       ".kwwwwwrrwwwwwk", ".kwwwwwrrwwwwwk", ".kwwwwwwwwwwwwk", ".kwkkwwwwwwkkwk", ".kwkkwwwwwwkkwk", ".kwwwwwwwwwwwwk",
       ".kkkkkkkkkkkkkk"],
+    // ---- extra music icons ----
+    cd: ["....kkkkkkkk", "..kkwwwwwggggkk", ".kwwwccwwwggggdk", ".kwwcwwwwwwgggdk", "kwwcwwwwwwwwggdk", "kwcwwwwwwwwwggdk", "kwcwwwwkkwwwgddk", "kwwwwwkwwkwwgddk", "kwwwwwkwwkwggddk", "kgwwwwwkkwwggddk", "kggwwwwwwwwgdddk", "kgggwwwwwwggdddk", ".kgggwwwwgggddk", ".kdgggggggggddk", "..kkddddddddkk", "....kkkkkkkk"],
+    vinyl: ["....kkkkkkkk", "..kkkkkkkkkkkk", ".kkkkddddddkkkk", ".kgkddkkkkddkkk", "kkkdkkkkkkkkdkkk", "kkdkkkrrrrkkkdkk", "kkdkkrrrrrrkkdkk", "kkdkkrrwwrrkkdkk", "kkdkkrrwwrrkkdkk", "kkdkkrrrrrrkkdkk", "kkdkkkrrrrkkkdkk", "kkkdkkkkkkkkdkkk", ".kkkddkkkkddkkk", ".kkkkddddddkkkk", "..kkkkkkkkkkkk", "....kkkkkkkk"],
+    cassette: ["", "", "kkkkkkkkkkkkkkkk", "kggggggggggggggk", "kgwwwwwwwwwwwwgk", "kgwrrrrrrrrrrwgk", "kgwwwwwwwwwwwwgk", "kggkkkkkkkkkkggk", "kggkwdkddkdwkggk", "kggkdwkddkwdkggk", "kggkkkkkkkkkkggk", "kggggggggggggggk", "kgggdkkkkkkdgggk", "kkkkkkkkkkkkkkkk"],
+    headphones: ["", "....kkkkkkkk", "..kkddddddddkk", ".kdd........ddk", ".kd..........dk", "kd............dk", "kd............dk", "kd............dk", "kkkkk......kkkkk", "kbbuk......kubbk", "kbbuk......kubbk", "kbbuk......kubbk", "kbbuk......kubbk", "kkkkk......kkkkk"],
+    mic: ["......kkkk", ".....kgwgdk", "....kgwgggdk", "....kgdgdgdk", "....kdgdgddk", "....kgdgdgdk", ".....kddddk", "......kkkk", "......kddk", "......kddk", "......kddk", "......kddk", ".......kk", "....kkkkkkkk", "....kddddddk", "....kkkkkkkk"],
+    radio: ["", "", "..........k", "...........k", "............k", "kkkkkkkkkkkkkkkk", "kmmmmmmmmmmmmmmk", "kmkkkkkmmyyyyymk", "kmkdkdkmmkkkkkmk", "kmkkdkkmmmmmmmmk", "kmkdkdkmmgmgmgmk", "kmkkkkkmmmmmmmmk", "kmmmmmmmmmmmmmmk", "kkkkkkkkkkkkkkkk"],
+    // ---- end of extra music icons ----
     power: ["", "", "......kkkk", ".....kggggk", "....kgddddgk", "...kgd....dgk", "...kgd.kk.dgk",
       "...kgd.kk.dgk", "...kgd....dgk", "....kgddddgk", ".....kggggk", "......kkkk"]
   };
@@ -142,7 +150,7 @@
         // ---- Play-a-song button ----
     var song = new Audio("music/All_My_Love_Remains.mp3");
     var songLabel = h("span", { text: "Radio" });
-    var songBtn = h("button", { class: "btn big", type: "button" }, icon("speaker"), songLabel);
+    var songBtn = h("button", { class: "btn big", type: "button" }, icon("radio"), songLabel);
     songBtn.addEventListener("click", function () {
       if (song.paused) {
         claimAudio(song);
@@ -156,7 +164,7 @@
       songLabel.textContent = "Pause";
     });
     song.addEventListener("pause", function () {
-      songBtn.replaceChild(icon("speaker"), songBtn.firstChild);
+      songBtn.replaceChild(icon("radio"), songBtn.firstChild);
       songLabel.textContent = "Radio";
     });
     window.addEventListener("dsh-audio", function (e) { if (e.detail !== song) song.pause(); });

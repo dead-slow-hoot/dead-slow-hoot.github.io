@@ -63,8 +63,8 @@ window.SITE = {
      icon:  music | video | camera | web | merch | mail
      --------------------------------------------------------------- */
   links: [
-    { group: "Listen", label: "Spotify",     icon: "music",  url: "https://open.spotify.com/artist/39OHhg4B0aJg3JxlYjtfJ3" },
-    { group: "Listen", label: "Bandcamp",    icon: "music",  url: "https://deadslowhoot.bandcamp.com" },
+    { group: "Listen", label: "Spotify",     icon: "headphones",  url: "https://open.spotify.com/artist/39OHhg4B0aJg3JxlYjtfJ3" },
+    { group: "Listen", label: "Bandcamp",    icon: "vinyl",   url: "https://deadslowhoot.bandcamp.com" },
     { group: "Listen", label: "Apple Music", icon: "music",  url: "" },
     { group: "Listen", label: "YouTube",     icon: "video",  url: "https://www.youtube.com/watch?v=N90O2ZkhYl0" },
     { group: "Listen", label: "SoundCloud",  icon: "music",  url: "https://soundcloud.com/dead-slow-hoot" },
