@@ -26,7 +26,7 @@ window.SCHEMES = [
     hilite: "#ffffff", light: "#808080", shadow: "#808080", dark: "#ffffff", link: "#ffff00", linkVisited: "#00ffff",
     titleInactive: "#404040", titleInactiveText: "#ffffff" },
 ];
-window.DEFAULT_SCHEME = "Windows Standard";
+window.DEFAULT_SCHEME = "Night Owl (dark)";
 
 (function () {
   function hex(c) { c = c.replace("#", ""); return [0, 2, 4].map(function (i) { return parseInt(c.substr(i, 2), 16); }); }
