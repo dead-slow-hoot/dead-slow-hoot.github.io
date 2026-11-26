@@ -279,7 +279,9 @@ img { display: block; max-width: 100%; }
 }
 .logo h1 { margin: 0; }
 .logo img { position: absolute; display: block; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)) drop-shadow(3px 5px 6px rgba(0,0,0,.18)); }
-.logo-text { left: 2.624%; top: 23.798%; width: 66.233%; }
+/* panel artwork: background image, then the stacked band name, then the man */
+.welcome-hero.logo { background: #000 url("photos/panel-background.jpg") center / cover no-repeat; }
+.logo-text { left: 3%; top: 7%; height: 86%; width: auto; }   /* left: smaller % = further left */
 .logo-tagline {
   position: absolute;
   left: 3.448%; top: 53.257%; width: 61.41%;
@@ -297,6 +299,7 @@ img { display: block; max-width: 100%; }
 }
 .logo:hover .logo-man { transform: rotate(5deg) translateY(-2px); }
 .welcome-text { margin: 0; line-height: 1.45; }
+.welcome-tagline { margin: 0; font-style: italic; font-size: 15px; line-height: 1.35; }
 .welcome-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 /* Win95 "etched" group box. A real border (not a shadow) so the browser
    leaves a gap for the label instead of drawing the line through it. */
@@ -597,13 +600,14 @@ legend {
     z-index: auto !important;
   }
   .window.maximized { height: auto !important; }
+  /* phone stacking order: lower number = higher up the page */
   #win-welcome { order: 1; }
+  #win-tour { order: 2; }
   #win-links { order: 3; }
-  #win-tour { order: 4; }
+  .photo-strip { order: 4; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   #win-demos { order: 5; }
   #win-news { order: 5; }
   #win-photos { order: 6; }
-  .photo-strip { order: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .photo-strip .window { min-width: 0; }
   .photo-strip .title-controls { display: none; }
   .photo-strip .title-bar svg { display: none; }

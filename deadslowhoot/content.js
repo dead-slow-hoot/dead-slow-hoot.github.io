@@ -15,7 +15,7 @@
 
 window.SITE = {
   bandName: "Dead Slow Hoot",
-  tagline: "Bittersweet, anthemic, melancholy alt rock made in Sheffield.",
+  tagline: "",   // leave empty for no tagline under the logo
   about:
     "Dead Slow Hoot is a left of the dial indie rock band taking influence from bands like Wilco, Built To Spill and Big Thief - tender songs that take unexpected turns, tight but loose.",
 

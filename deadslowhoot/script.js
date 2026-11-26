@@ -176,9 +176,9 @@
       icon("folder"), "All links"));
 
     body.appendChild(h("div", { class: "welcome-hero logo" },
-      h("h1", null, h("img", { class: "logo-text", src: "photos/sticker-text.png", alt: band })),
-      SITE.tagline ? h("p", { class: "logo-tagline", text: SITE.tagline }) : null,
+      h("h1", null, h("img", { class: "logo-text", src: "photos/sticker-text-stacked.png", alt: band })),
       h("img", { class: "logo-man", src: "photos/sticker-man.png", alt: "" })));
+    if (SITE.tagline) body.appendChild(h("p", { class: "welcome-tagline", text: SITE.tagline }));
     if (SITE.about) body.appendChild(h("p", { class: "welcome-text", text: SITE.about }));
     body.appendChild(actions);
   })();
